@@ -14,7 +14,7 @@
 <header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="index.php?action=">
+  <a class="navbar-brand" href="index.php?action=listConfig">
     <img src="/pro5/public/images/icon.jpg" width="100" height="70" alt="">
   </a>
 </nav>
@@ -22,7 +22,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php?action=listConfig">Accueil <span class="sr-only">(current)</span></a>
       </li>
       <!--<li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -32,19 +32,19 @@
           Composants
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Processeur</a>
+          <a class="dropdown-item" href="index.php?action=processeur">Processeur</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Carte mère</a>
+          <a class="dropdown-item" href="index.php?action=carte mère">Carte mère</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Mémoire</a>
+          <a class="dropdown-item" href="index.php?action=mémoire">Mémoire</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Disque dur</a>
+          <a class="dropdown-item" href="index.php?action=disque dur">Disque dur</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Carte graphique</a>
+          <a class="dropdown-item" href="index.php?action=carte graphique">Carte graphique</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Boitier</a>
+          <a class="dropdown-item" href="index.php?action=boitier">Boitier</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Alimentation</a>
+          <a class="dropdown-item" href="index.php?action=alimentation">Alimentation</a>
         </div>
       </li>
       <!--<li class="nav-item">
