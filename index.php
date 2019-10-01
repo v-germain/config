@@ -8,6 +8,24 @@ try {
         elseif ($_GET['action'] == 'processeur') {
             listCPU();
         }
+        elseif ($_GET['action'] == 'alimentation') {
+            listPSU();
+        }
+        elseif ($_GET['action'] == 'boitier') {
+            listCase();
+        }
+        elseif ($_GET['action'] == 'carte graphique') {
+            listGraph();
+        }
+        elseif ($_GET['action'] == 'carte mère') {
+            listMB();
+        }
+        elseif ($_GET['action'] == 'disque dur') {
+            listHD();
+        }
+        elseif ($_GET['action'] == 'mémoire') {
+            listMemory();
+        }
     }
     else {
         listConfig();

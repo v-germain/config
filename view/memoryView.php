@@ -1,8 +1,8 @@
-<?php $title = 'Processeur' ?>
+<?php $title = 'Mémoire' ?>
 
 <?php ob_start(); ?>
 
-<h2>Processeur</h2>
+<h2>Mémoire</h2>
 
 <div class="viewContainer">
 <?php
@@ -10,14 +10,14 @@ while ($part = $partData->fetch())
 {
 ?>
     <div class="card" style="width: 32rem;">
-    <img src="public/images/processeur/<?= $part['id'] ?>.jpg" class="card-img-top" alt="...">
+    <img src="public/images/memoire/<?= $part['id'] ?>.jpg" class="card-img-top" alt="...">
     <div class="card-body">
         <h4 class="card-title"><?= $part['name'] ?></h4>
         <p class="card-text"><?= $part['descr'] ?> <br /> 
         Marque : <?= $part['brand'] ?><br />
-        Socket : <?= $part['socket'] ?><br />
-        Nombre de coeurs : <?= $part['corecount'] ?><br />
-        <?= $part['coreclock'] ?> Mo <br />
+        DDR<?= $part['speed'] ?> <br />
+        Taille : <?= $part['size'] ?> Go<br />
+        Fréquence : <?= $part['frequency'] ?> Mhz <br />
         Prix : <?= $part['price'] ?> €</p>
     </div>
     </div>
