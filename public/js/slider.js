@@ -5,7 +5,7 @@ class Slider {
         this.elementNext = document.getElementById("next");
         this.play = document.getElementById("play");
         this.stop = document.getElementById("stop");
-        this.imagesTab = ["public/images/slide1.jpg", "public/images/slide2.jpg", "public/images/slide3.jpg", "public/images/slide4.jpg"];
+        this.imagesTab = ["/pro5/public/images/slide1.jpg", "/pro5/public/images/slide2.jpg", "/pro5/public/images/slide3.jpg", "/pro5/public/images/slide4.jpg"];
         this.counter = 0;
         this.interval = 0;
         this.init();
