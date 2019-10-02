@@ -45,7 +45,10 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?action=displayInscription">Connexion</a>
+        <a class="nav-link" href="index.php?action=displayInscription">Inscription</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?action=displayConnexion">Connexion</a>
       </li>
     </ul>
   </div>

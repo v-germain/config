@@ -72,4 +72,12 @@ function mailExist($mail)
 {
     $memberManager = new MemberManager();
     $mailexist = $memberManager->verifMail($mail);
+    return $mailexist;
+}
+
+function pseudoExist($pseudo)
+{
+    $memberManager = new MemberManager();
+    $pseudoexist = $memberManager->verifPseudo($pseudo);
+    return $pseudoexist;
 }

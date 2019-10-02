@@ -38,15 +38,11 @@ try {
                         $reqpseudo->execute(array($pseudo));
                         $pseudoexist = $reqpseudo->rowCount();
                         //TO DO
+                        //$pseudoexist = pseudoExist($pseudo);
                         if ($pseudoexist == 0) {
                             if ($mail == $mail2) {
                                 if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                                    //TO DO : créer classe correspondante dans MemberManager.php puis instancier dans controler
-                                    $db = new PDO('mysql:host=localhost;dbname=project5;charset=utf8', 'v-germain', '');
-                                    $reqmail = $db->prepare('SELECT * FROM members WHERE mail = ?');
-                                    $reqmail->execute(array($mail));
-                                    $mailexist = $reqmail->rowCount();
-                                    //TO DO
+                                    $mailexist = mailExist($mail);
                                     if ($mailexist == 0) {
                                         if ($password == $password2) {
                                             inscription($pseudo, $mail, $password);
@@ -74,6 +70,9 @@ try {
             }
         }
         // inscription end
+        elseif ($_GET['action'] == 'displayConnexion') {
+            require('view/connexionView.php');
+        }
     } else {
         listConfig();
     }

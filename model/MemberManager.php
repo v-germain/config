@@ -7,17 +7,17 @@ class MemberManager extends Manager {
     public function verifMail($mail)
     {
         $db = $this->dbConnect();
-        /*$reqmail = $db->query('SELECT * FROM members WHERE mail = ?');
+        $reqmail = $db->prepare('SELECT * FROM members WHERE mail = ?');
         $reqmail->execute(array($mail));
-        $mailexist = $reqmail->rowCount();*/
+        $mailexist = $reqmail->rowCount();
     }
 
     public function verifPseudo($pseudo)
     {
         $db = $this->dbConnect();
-        /*$reqpseudo = $db->query('SELECT * FROM members WHERE pseudo = ?');
-        $reqpseudo->execute(array($pseudopseudo));
-        $pseudoexist = $reqpseudo->rowCount();*/
+        $reqpseudo = $db->prepare('SELECT * FROM members WHERE pseudo = ?');
+        $reqpseudo->execute(array($pseudo));
+        $pseudoexist = $reqpseudo->rowCount();
     }
 
     public function newInscription($pseudo, $mail, $password)
