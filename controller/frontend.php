@@ -2,6 +2,7 @@
 
 require_once(__DIR__ . '/../model/Manager.php');
 require_once(__DIR__ . '/../model/PartsManager.php');
+require_once(__DIR__ . '/../model/MemberManager.php');
 
 function listConfig()
 {
@@ -57,4 +58,18 @@ function listMemory()
     $partsManager = new PartsManager();
     $partData = $partsManager->loadMemory();
     require('view/memoryView.php');
+}
+
+function inscription($pseudo, $mail, $password)
+{
+    echo('finaltoto');
+    $memberManager = new MemberManager();
+    $affectedLines = $memberManager->newInscription($pseudo, $mail, $password);
+    echo('Votre compte a bien été créé! <a href="#">Se connecter</a>');
+}
+
+function mailExist($mail)
+{
+    $memberManager = new MemberManager();
+    $mailexist = $memberManager->verifMail($mail);
 }
