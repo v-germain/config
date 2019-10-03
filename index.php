@@ -23,27 +23,27 @@ try {
         elseif ($_GET['action'] == 'displayInscription') {
             require('view/inscriptionView.php');
         } elseif ($_GET['action'] == 'inscription') {
-            if (isset($_POST['forminscription'])) {
+            if (isset($_POST['formInscription'])) {
                 $pseudo = htmlspecialchars($_POST['pseudo']);
                 $mail = htmlspecialchars($_POST['mail']);
                 $mail2 = htmlspecialchars($_POST['mail2']);
                 $password = sha1($_POST['password']);
                 $password2 = sha1($_POST['password2']);
                 if (!empty($_POST['pseudo']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
-                    $pseudolength = strlen($pseudo);
-                    if ($pseudolength <= 20) {
+                    $pseudoLength = strlen($pseudo);
+                    if ($pseudoLength <= 20) {
                         //TO DO : créer classe correspondante dans MemberManager.php puis instancier dans controler
                         $db = new PDO('mysql:host=localhost;dbname=project5;charset=utf8', 'v-germain', '');
-                        $reqpseudo = $db->prepare('SELECT * FROM members WHERE pseudo = ?');
-                        $reqpseudo->execute(array($pseudo));
-                        $pseudoexist = $reqpseudo->rowCount();
+                        $reqPseudo = $db->prepare('SELECT * FROM members WHERE pseudo = ?');
+                        $reqPseudo->execute(array($pseudo));
+                        $pseudoExist = $reqPseudo->rowCount();
                         //TO DO
-                        //$pseudoexist = pseudoExist($pseudo);
-                        if ($pseudoexist == 0) {
+                        //$pseudoExist = pseudoExist($pseudo);
+                        if ($pseudoExist == 0) {
                             if ($mail == $mail2) {
                                 if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                                    $mailexist = mailExist($mail);
-                                    if ($mailexist == 0) {
+                                    $mailExist = mailExist($mail);
+                                    if ($mailExist == 0) {
                                         if ($password == $password2) {
                                             inscription($pseudo, $mail, $password);
                                         } else {
@@ -70,9 +70,45 @@ try {
             }
         }
         // inscription end
+        // connexion start
         elseif ($_GET['action'] == 'displayConnexion') {
             require('view/connexionView.php');
         }
+        elseif ($_GET['action'] == 'connexion') {
+            if(isset($_POST['formConnexion'])) {
+                $pseudoCo = htmlspecialchars($_POST['pseudoCo']);
+                $passwordCo = sha1($_POST['passwordCo']);
+                if(!empty($pseudoCo) AND !empty($passwordCo)) {
+                    //TO DO : créer classe correspondante dans MemberManager.php puis instancier dans controler
+                    $db = new PDO('mysql:host=localhost;dbname=project5;charset=utf8', 'v-germain', '');
+                    $reqUser = $db->prepare('SELECT * FROM members WHERE pseudo = ? AND password = ?');
+                    $reqUser->execute(array($pseudoCo, $passwordCo));
+                    $userExist = $reqUser->rowCount();
+                    //TO DO
+                    // $userExist = userExist($pseudoCo, $passwordCo);
+                    if($userExist == 1) {
+                        $userInfo = $reqUser->fetch();
+                        $_SESSION['id'] = $userInfo['id'];
+                        $_SESSION['pseudo'] = $userInfo['pseudo'];
+                        $_SESSION['mail'] = $userInfo['mail'];
+                        require('Location: index.php?action=profil&id='.$_SESSION['id']);                    
+                    } else {
+                        throw new Exception('Verifiez les informations saisies.');
+                    }
+                } else {
+                    throw new Exception('Tous les champs doivent être complétés.');
+                }
+            }
+        }
+        // connexion end
+        elseif ($_GET['action'] == 'profil') {
+            if(isset($_GET['id']) && $_GET['id'] > 0) {
+                require(__DIR__ . '/view/profilView.php');
+            } else {
+                throw new Exception('La page que vous avez séléctionné n\'existe pas');
+            }
+        }
+
     } else {
         listConfig();
     }

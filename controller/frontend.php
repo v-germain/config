@@ -15,69 +15,81 @@ function listCPU()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadCPU();
-    require('view/processorView.php');
+    require('view/parts/processorView.php');
 }
 
 function listPSU()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadPSU();
-    require('view/powerSupplyView.php');
+    require('view/parts/powerSupplyView.php');
 }
 
 function listCase()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadCase();
-    require('view/caseView.php');
+    require('view/parts/caseView.php');
 }
 
 function listGraph()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadGraph();
-    require('view/videoCardView.php');
+    require('view/parts/videoCardView.php');
 }
 
 function listMB()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadMB();
-    require('view/motherBoardView.php');
+    require('view/parts/motherBoardView.php');
 }
 
 function listHD()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadHD();
-    require('view/hardDriveView.php');
+    require('view/parts/hardDriveView.php');
 }
 
 function listMemory()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadMemory();
-    require('view/memoryView.php');
+    require('view/parts/memoryView.php');
 }
 
 function inscription($pseudo, $mail, $password)
 {
-    echo('finaltoto');
     $memberManager = new MemberManager();
     $affectedLines = $memberManager->newInscription($pseudo, $mail, $password);
-    echo('Votre compte a bien été créé! <a href="#">Se connecter</a>');
+    echo('Votre compte a bien été créé! <a href="index.php?action="displayConnexion">Se connecter</a>');
 }
 
 function mailExist($mail)
 {
     $memberManager = new MemberManager();
-    $mailexist = $memberManager->verifMail($mail);
-    return $mailexist;
+    $mailExist = $memberManager->verifMail($mail);
+    return $mailExist;
 }
 
 function pseudoExist($pseudo)
 {
     $memberManager = new MemberManager();
-    $pseudoexist = $memberManager->verifPseudo($pseudo);
-    return $pseudoexist;
+    $pseudoExist = $memberManager->verifPseudo($pseudo);
+    return $pseudoExist;
+}
+
+function userExist($pseudo, $password)
+{
+    $memberManager = new MemberManager();
+    $userExist = $memberManager->verifMember($pseudo, $password);
+    return $userExist;
+}
+
+function getUser()
+{
+    $memberManager = new MemberManager();
+    $getUser = $memberManager->getUser();
 }

@@ -47,7 +47,7 @@
             <tr>
                 <td><!--purpose : align input submit--></td>
                 <td>
-                    <input type="submit" name="forminscription" value="Inscription">
+                    <input type="submit" name="formInscription" value="Inscription">
                 </td>
             </tr>
         </table>

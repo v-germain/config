@@ -1,6 +1,7 @@
-<?php $title = "Inscription"; ?>
+<?php $title = "Connexion"; ?>
 
 <?php ob_start(); ?>
+<?php session_start(); ?>
 
 <form method="POST" action="index.php?action=connexion">
     <table>
@@ -9,7 +10,7 @@
                 <label for="pseudo">Pseudo : </label>
             </td>
             <td>
-                <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" required value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" />
+                <input type="text" placeholder="Pseudo" id="pseudoCo" name="pseudoCo" required />
             </td>
         </tr>
         <tr>
@@ -17,7 +18,15 @@
                 <label for="password">Mot de passe : </label>
             </td>
             <td>
-                <input type="password" placeholder="Mot de passe" id="password" name="password" required />
+                <input type="password" placeholder="Mot de passe" id="passwordCo" name="passwordCo" required />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--purpose : align input submit-->
+            </td>
+            <td>
+                <input type="submit" name="formConnexion" value="Connexion">
             </td>
         </tr>
     </table>
