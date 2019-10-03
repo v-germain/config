@@ -88,8 +88,9 @@ function userExist($pseudo, $password)
     return $userExist;
 }
 
-function getUser()
+function getUser($pseudo, $password)
 {
     $memberManager = new MemberManager();
-    $getUser = $memberManager->getUser();
+    $user = $memberManager->getUser($pseudo, $password);
+    return $user;
 }

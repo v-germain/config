@@ -10,6 +10,7 @@ class MemberManager extends Manager {
         $reqMail = $db->prepare('SELECT * FROM members WHERE mail = ?');
         $reqMail->execute(array($mail));
         $mailExist = $reqMail->rowCount();
+        return $mailExist;
     }
 
     public function verifPseudo($pseudo)
@@ -18,14 +19,16 @@ class MemberManager extends Manager {
         $reqPseudo = $db->prepare('SELECT * FROM members WHERE pseudo = ?');
         $reqPseudo->execute(array($pseudo));
         $pseudoExist = $reqPseudo->rowCount();
+        return $pseudoExist;
     }
 
     public function verifMember($pseudo, $password)
     {
         $db = $this->dbConnect();
-        $reqUser = $db->prepare('SELECT * FROM members WHERE pseudo = ? AND mail = ?');
+        $reqUser = $db->prepare('SELECT * FROM members WHERE pseudo = ? AND password = ?');
         $reqUser->execute(array($pseudo, $password));
         $userExist = $reqUser->rowCount();
+        return $userExist;
     }
 
     public function newInscription($pseudo, $mail, $password)
@@ -36,10 +39,13 @@ class MemberManager extends Manager {
         return $affectedLines;
     }
 
-    public function userView()
+    public function getUser($pseudo, $password)
     {
         $db = $this->dbConnect();
-        
+        $reqUser = $db->prepare('SELECT * FROM members WHERE pseudo = ? AND password = ?');
+        $reqUser->execute(array($pseudo, $password));
+        $user = $reqUser->fetch();
+        return $user;
     }
 
 }

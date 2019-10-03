@@ -11,6 +11,8 @@
     <link href="/pro5/public/css/style.css" rel="stylesheet" />
 </head>
 
+<?php session_start(); ?>
+
 <header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <nav class="navbar navbar-light bg-light">
@@ -44,12 +46,22 @@
           <a class="dropdown-item" href="index.php?action=alimentation">Alimentation</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?action=displayInscription">Inscription</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?action=displayConnexion">Connexion</a>
-      </li>
+      <?php if (!isset($_SESSION['pseudo'])): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?action=displayInscription">Inscription</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?action=displayConnexion">Connexion</a>
+        </li>
+      <?php endif; ?>
+      <?php if (isset($_SESSION['pseudo'])): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?action=deconnexion">Deconnexion</a>
+        </li>
+        <li class="nav-item">
+          <?= $_SESSION['pseudo']?>
+        </li>
+      <?php endif; ?>
     </ul>
   </div>
 </nav>

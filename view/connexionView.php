@@ -1,7 +1,6 @@
 <?php $title = "Connexion"; ?>
 
 <?php ob_start(); ?>
-<?php session_start(); ?>
 
 <form method="POST" action="index.php?action=connexion">
     <table>

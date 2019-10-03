@@ -1,4 +1,5 @@
 <?php
+
 require('controller/frontend.php');
 try {
     if (isset($_GET['action'])) {
@@ -32,13 +33,7 @@ try {
                 if (!empty($_POST['pseudo']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
                     $pseudoLength = strlen($pseudo);
                     if ($pseudoLength <= 20) {
-                        //TO DO : créer classe correspondante dans MemberManager.php puis instancier dans controler
-                        $db = new PDO('mysql:host=localhost;dbname=project5;charset=utf8', 'v-germain', '');
-                        $reqPseudo = $db->prepare('SELECT * FROM members WHERE pseudo = ?');
-                        $reqPseudo->execute(array($pseudo));
-                        $pseudoExist = $reqPseudo->rowCount();
-                        //TO DO
-                        //$pseudoExist = pseudoExist($pseudo);
+                        $pseudoExist = pseudoExist($pseudo);
                         if ($pseudoExist == 0) {
                             if ($mail == $mail2) {
                                 if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
@@ -79,19 +74,14 @@ try {
                 $pseudoCo = htmlspecialchars($_POST['pseudoCo']);
                 $passwordCo = sha1($_POST['passwordCo']);
                 if(!empty($pseudoCo) AND !empty($passwordCo)) {
-                    //TO DO : créer classe correspondante dans MemberManager.php puis instancier dans controler
-                    $db = new PDO('mysql:host=localhost;dbname=project5;charset=utf8', 'v-germain', '');
-                    $reqUser = $db->prepare('SELECT * FROM members WHERE pseudo = ? AND password = ?');
-                    $reqUser->execute(array($pseudoCo, $passwordCo));
-                    $userExist = $reqUser->rowCount();
-                    //TO DO
-                    // $userExist = userExist($pseudoCo, $passwordCo);
+                    $userExist = userExist($pseudoCo, $passwordCo);
                     if($userExist == 1) {
-                        $userInfo = $reqUser->fetch();
+                        session_start();
+                        $userInfo = getUser($pseudoCo, $passwordCo);
                         $_SESSION['id'] = $userInfo['id'];
                         $_SESSION['pseudo'] = $userInfo['pseudo'];
                         $_SESSION['mail'] = $userInfo['mail'];
-                        require('Location: index.php?action=profil&id='.$_SESSION['id']);                    
+                        header('Location: index.php');            
                     } else {
                         throw new Exception('Verifiez les informations saisies.');
                     }
@@ -103,10 +93,16 @@ try {
         // connexion end
         elseif ($_GET['action'] == 'profil') {
             if(isset($_GET['id']) && $_GET['id'] > 0) {
+
                 require(__DIR__ . '/view/profilView.php');
             } else {
                 throw new Exception('La page que vous avez séléctionné n\'existe pas');
             }
+        }
+        elseif ($_GET['action'] == 'deconnexion') {
+            session_start();
+            session_destroy();
+            header('Location: index.php');
         }
 
     } else {
