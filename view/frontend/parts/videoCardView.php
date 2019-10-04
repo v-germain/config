@@ -1,5 +1,6 @@
 <?php $title = 'Carte Graphique' ?>
 
+<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <h2>Carte Graphique</h2>

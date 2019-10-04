@@ -1,5 +1,6 @@
 <?php $title = 'Disque dur' ?>
 
+<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <h2>Disque dur</h2>

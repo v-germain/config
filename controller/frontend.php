@@ -101,3 +101,16 @@ function getProfil($id)
     $userProfil = $memberManager->getProfil($id);
     require(__DIR__ . '/../view/frontend/profilView.php');
 }
+
+function editPseudo($id, $newPseudo)
+{
+    $memberManager = new MemberManager();
+    $editPseudo = $memberManager->editPseudo($id, $newPseudo);
+}
+
+function editMail($id, $newMail)
+{
+    $memberManager = new MemberManager();
+    $editMail = $memberManager->editMail($id, $newMail);
+}
+    

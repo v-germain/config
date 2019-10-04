@@ -1,5 +1,6 @@
 <?php $title ="Inscription"; ?>
 
+<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <form method="POST" action="index.php?action=inscription">

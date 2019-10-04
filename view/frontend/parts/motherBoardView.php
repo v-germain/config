@@ -1,5 +1,6 @@
 <?php $title = 'Carte mère' ?>
 
+<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <h2>Carte mère</h2>

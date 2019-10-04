@@ -109,10 +109,34 @@ try {
             session_destroy();
             header('Location: index.php');
         }
+        elseif ($_GET['action'] == 'editPseudo') {
+            if(isset($_POST['formEditPseudo'])) {
+                $newPseudo = htmlspecialchars($_POST['newPseudo']);
+                $id = $_GET['id'];
+                if (isset($_POST['newPseudo']) and !empty($_POST['newPseudo']) and pseudoExist($_POST['newPseudo']) == 0) {
+                    editPseudo($id, $newPseudo);
+                    //header('Location : index.php'); pas prit en compte
+                } else {
+                    throw new Exception('Impossible de changer le pseudo.');
+                }
+            }
+        }
+        elseif ($_GET['action'] == 'editMail') {
+            if(isset($_POST['formEditMail'])) {
+                $newMail = htmlspecialchars($_POST['newMail']);
+                $id = $_GET['id'];
+                if(isset($_POST['newMail']) and !empty($_POST['newMail']) and mailExist($_POST['newMail']) == 0) {
+                    editMail($id, $newMail);
+                    //header('Location : index.php'); pas prit en compte
+                } else {
+                    throw new Exception('Impossible de changer le mail.');
+                }
+            }
+        }
+        // TO DO
         elseif ($_GET['action'] == 'admin') {
             listUsers($pseudo, $mail);
         }
-
     } else {
         listConfig();
     }

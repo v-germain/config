@@ -1,5 +1,6 @@
 <?php $title = 'Mémoire' ?>
 
+<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <h2>Mémoire</h2>

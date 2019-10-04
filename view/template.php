@@ -63,7 +63,7 @@
           <a class="nav-link" href="index.php?action=profil&amp;id=<?= $_SESSION['id'] ?>">Profil</a>
         </li>
       <?php endif; ?>      
-      <?php if (isset($_SESSION['pseudo']) AND ($_SESSION['pseudo']) == 'admin'): ?>)
+      <?php if (isset($_SESSION['pseudo']) AND ($_SESSION['pseudo']) == 'admin'): ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=admin">Administration</a>
         </li>

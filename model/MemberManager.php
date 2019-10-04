@@ -47,6 +47,7 @@ class MemberManager extends Manager {
         $user = $reqUser->fetch();
         return $user;
     }
+
     public function getProfil($id)
     {
         $db = $this->dbConnect();
@@ -55,5 +56,26 @@ class MemberManager extends Manager {
         $userProfil = $reqProfil->fetch();
         return $userProfil;  
     }
+
+    public function editPseudo($id, $newPseudo)
+    {
+        $db = $this->dbConnect();
+        $editPseudo = $db->prepare('UPDATE members SET pseudo = :newPseudo WHERE id = :id');
+        $editPseudo->execute(array(
+            'newPseudo' => $newPseudo,
+            'id' => $id
+        ));
+    }
+
+    public function editMail($id, $newMail)
+    {
+        $db = $this->dbConnect();
+        $editMail = $db->prepare('UPDATE members SET mail = :newMail WHERE id = :id');
+        $editMail->execute(array(
+            'newMail' => $newMail,
+            'id' => $id
+        ));
+    }
+    
 
 }
