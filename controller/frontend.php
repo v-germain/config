@@ -94,3 +94,10 @@ function getUser($pseudo, $password)
     $user = $memberManager->getUser($pseudo, $password);
     return $user;
 }
+
+function getProfil($id)
+{
+    $memberManager = new MemberManager();
+    $userProfil = $memberManager->getProfil($id);
+    require(__DIR__ . '/../view/profilView.php');
+}

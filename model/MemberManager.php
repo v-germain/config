@@ -47,5 +47,13 @@ class MemberManager extends Manager {
         $user = $reqUser->fetch();
         return $user;
     }
+    public function getProfil($id)
+    {
+        $db = $this->dbConnect();
+        $reqProfil = $db->prepare('SELECT id, pseudo, mail FROM members WHERE id = ?');
+        $reqProfil->execute(array($id));
+        $userProfil = $reqProfil->fetch();
+        return $userProfil;  
+    }
 
 }

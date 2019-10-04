@@ -1,10 +1,9 @@
 <?php $title = "Profil"; ?>
 
 <?php ob_start(); ?>
-<?php session_start(); ?>
 
 <?php
-if(isset($userInfo['id']) == $_SESSION['id']) 
+//if(isset($userInfo['id']) == $_SESSION['id']) 
 {
 ?>
 

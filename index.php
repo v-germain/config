@@ -29,7 +29,9 @@ try {
                 $mail = htmlspecialchars($_POST['mail']);
                 $mail2 = htmlspecialchars($_POST['mail2']);
                 $password = sha1($_POST['password']);
-                $password2 = sha1($_POST['password2']);
+                $password = sha1($_POST['password2']);
+                //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                //$password2 = password_hash($_POST['password2'], PASSWORD_DEFAULT);
                 if (!empty($_POST['pseudo']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
                     $pseudoLength = strlen($pseudo);
                     if ($pseudoLength <= 20) {
@@ -73,6 +75,7 @@ try {
             if(isset($_POST['formConnexion'])) {
                 $pseudoCo = htmlspecialchars($_POST['pseudoCo']);
                 $passwordCo = sha1($_POST['passwordCo']);
+                //$passwordCo = password_verify($_POST['passwordCo'], $user['password']);
                 if(!empty($pseudoCo) AND !empty($passwordCo)) {
                     $userExist = userExist($pseudoCo, $passwordCo);
                     if($userExist == 1) {
@@ -92,11 +95,12 @@ try {
         }
         // connexion end
         elseif ($_GET['action'] == 'profil') {
-            if(isset($_GET['id']) && $_GET['id'] > 0) {
-
-                require(__DIR__ . '/view/profilView.php');
+            
+            if(isset($_GET['id']) && $_GET['id'] > 0) { 
+                $id = $_GET['id'];                       
+                getProfil($id);
             } else {
-                throw new Exception('La page que vous avez séléctionné n\'existe pas');
+                throw new Exception('La page que vous avez sélectionné n\'existe pas');
             }
         }
         elseif ($_GET['action'] == 'deconnexion') {
