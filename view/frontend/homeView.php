@@ -1,5 +1,6 @@
 <?php $title = "Accueil"; ?>
 
+<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <h2></h2>
@@ -41,4 +42,4 @@
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require(__DIR__ .'/../template.php'); ?>

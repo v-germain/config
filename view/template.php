@@ -11,8 +11,6 @@
     <link href="/pro5/public/css/style.css" rel="stylesheet" />
 </head>
 
-<?php session_start(); ?>
-
 <header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <nav class="navbar navbar-light bg-light">
@@ -62,7 +60,7 @@
           <?= $_SESSION['pseudo']?>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=profil&amp;<?= $_SESSION['id'] ?>">Profil</a>
+          <a class="nav-link" href="index.php?action=profil&amp;id=<?= $_SESSION['id'] ?>">Profil</a>
         </li>
       <?php endif; ?>      
       <?php if (isset($_SESSION['pseudo']) AND ($_SESSION['pseudo']) == 'admin'): ?>)

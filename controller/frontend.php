@@ -8,63 +8,63 @@ function listConfig()
 {
     $partsManager = new PartsManager();
     $partsData = $partsManager->loadConfig();
-    require('view/homeView.php');
+    require('view/frontend/homeView.php');
 }
 
 function listCPU()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadCPU();
-    require('view/parts/processorView.php');
+    require('view/frontend/parts/processorView.php');
 }
 
 function listPSU()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadPSU();
-    require('view/parts/powerSupplyView.php');
+    require('view/frontend/parts/powerSupplyView.php');
 }
 
 function listCase()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadCase();
-    require('view/parts/caseView.php');
+    require('view/frontend/parts/caseView.php');
 }
 
 function listGraph()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadGraph();
-    require('view/parts/videoCardView.php');
+    require('view/frontend/parts/videoCardView.php');
 }
 
 function listMB()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadMB();
-    require('view/parts/motherBoardView.php');
+    require('view/frontend/parts/motherBoardView.php');
 }
 
 function listHD()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadHD();
-    require('view/parts/hardDriveView.php');
+    require('view/frontend/parts/hardDriveView.php');
 }
 
 function listMemory()
 {
     $partsManager = new PartsManager();
     $partData = $partsManager->loadMemory();
-    require('view/parts/memoryView.php');
+    require('view/frontend/parts/memoryView.php');
 }
 
 function inscription($pseudo, $mail, $password)
 {
     $memberManager = new MemberManager();
     $affectedLines = $memberManager->newInscription($pseudo, $mail, $password);
-    echo('Votre compte a bien été créé! <a href="index.php?action="displayConnexion">Se connecter</a>');
+    header('Location: index.php');
 }
 
 function mailExist($mail)
@@ -99,5 +99,5 @@ function getProfil($id)
 {
     $memberManager = new MemberManager();
     $userProfil = $memberManager->getProfil($id);
-    require(__DIR__ . '/../view/profilView.php');
+    require(__DIR__ . '/../view/frontend/profilView.php');
 }

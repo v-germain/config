@@ -1,6 +1,8 @@
 <?php
 
 require('controller/frontend.php');
+require('controller/backend.php');
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listConfig') {
@@ -22,14 +24,14 @@ try {
         }
         // inscription start
         elseif ($_GET['action'] == 'displayInscription') {
-            require('view/inscriptionView.php');
+            require('view/frontend/inscriptionView.php');
         } elseif ($_GET['action'] == 'inscription') {
             if (isset($_POST['formInscription'])) {
                 $pseudo = htmlspecialchars($_POST['pseudo']);
                 $mail = htmlspecialchars($_POST['mail']);
                 $mail2 = htmlspecialchars($_POST['mail2']);
                 $password = sha1($_POST['password']);
-                $password = sha1($_POST['password2']);
+                $password2 = sha1($_POST['password2']);
                 //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 //$password2 = password_hash($_POST['password2'], PASSWORD_DEFAULT);
                 if (!empty($_POST['pseudo']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
@@ -69,7 +71,7 @@ try {
         // inscription end
         // connexion start
         elseif ($_GET['action'] == 'displayConnexion') {
-            require('view/connexionView.php');
+            require('view/frontend/connexionView.php');
         }
         elseif ($_GET['action'] == 'connexion') {
             if(isset($_POST['formConnexion'])) {
@@ -94,19 +96,21 @@ try {
             }
         }
         // connexion end
-        elseif ($_GET['action'] == 'profil') {
-            
+        elseif ($_GET['action'] == 'profil') { 
             if(isset($_GET['id']) && $_GET['id'] > 0) { 
                 $id = $_GET['id'];                       
                 getProfil($id);
             } else {
                 throw new Exception('La page que vous avez sélectionné n\'existe pas');
-            }
+                } 
         }
         elseif ($_GET['action'] == 'deconnexion') {
             session_start();
             session_destroy();
             header('Location: index.php');
+        }
+        elseif ($_GET['action'] == 'admin') {
+            listUsers($pseudo, $mail);
         }
 
     } else {
