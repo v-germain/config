@@ -1,5 +1,6 @@
 <?php $title = "Espace Admin"; ?>
 
+<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <h2></h2>

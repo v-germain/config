@@ -3,6 +3,26 @@
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
+<script type="text/javascript">
+                function checkpass()
+                {
+                    var val1 = document.getElementById("password");
+                    var val2 = document.getElementById("password2");
+
+                    if(val1.value != val2.value)
+                    {
+                        document.getElementById("alert").innerHTML="Tapez deux passes identiques, merci.";
+                        return false;
+                    }
+                    else
+                    {
+                        document.getElementById("alert").innerHTML="Mot de passe identiques";
+                        return true;
+                    }
+                }
+            </script>
+
+
 <form method="POST" action="index.php?action=inscription">
         <table>
             <tr>
@@ -42,18 +62,20 @@
                     <label for="password2">Confirmation du mot de passe : </label>
                 </td>
                 <td>
-                    <input type="password" placeholder="Confirmation du mot de passe" id="password2" name="password2" required />
+                    <input type="password" placeholder="Confirmation du mot de passe" id="password2" name="password2" onkeyup="checkpass();" required />
+                </td>
+                <td>
+                    <p id='alert'></p>
                 </td>
             </tr>
             <tr>
                 <td><!--purpose : align input submit--></td>
                 <td>
-                    <input type="submit" name="formInscription" value="Inscription">
+                    <input type="submit" id="inscription" name="formInscription" value="Inscription" onclick="return checkpass();">
                 </td>
             </tr>
         </table>
     </form>
-
 
 <?php $content = ob_get_clean(); ?>
 <?php require(__DIR__ .'/../template.php'); ?>

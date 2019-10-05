@@ -12,20 +12,13 @@ if(($userProfil['id']) == $_SESSION['id'])
 {
 ?>
     Mail : <?= $userProfil['mail'] ?> <br /></p>
-    <a href="#">Editer mon profil</a>
+    <p>Editer mon profil</p>
     <form method="POST" action="index.php?action=editPseudo&amp;id=<?= $_SESSION['id'] ?>" style = 'display : block'>
         <label for="pseudo">Pseudo : </label>
         <input type="text" value="<?= $userProfil['pseudo'] ?>" id="newPseudo" name="newPseudo" required/>
         <input type="submit" name="formEditPseudo" value="Valider">
     </form>
-    <form method="POST" action="index.php?action=editMail&amp;id=<?= $_SESSION['id'] ?>" style = 'display : block'>
-        <label for="mail">Mail : </label>
-        <input type="email" value="<?= $userProfil['mail'] ?>" id="newMail" name="newMail" required/>
-        <input type="submit" name="formEditMail" value="Valider">
-    </form>
-
-
-
+    <a href="index.php?action=displayPass">Modifier mon mot de passe</a>
 <?php
 }
 ?>

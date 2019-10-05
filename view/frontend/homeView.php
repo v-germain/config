@@ -40,6 +40,5 @@
 <script src="/pro5/public/js/slider.js"></script>
 <script src="/pro5/public/js/init.js"></script>
 
-
 <?php $content = ob_get_clean(); ?>
 <?php require(__DIR__ .'/../template.php'); ?>

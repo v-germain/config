@@ -13,6 +13,15 @@ class MemberManager extends Manager {
         return $mailExist;
     }
 
+    public function verifPassword($mail)
+    {
+        $db = $this->dbConnect();
+        $reqPass = $db->prepare('SELECT password FROM members WHERE mail = ?');
+        $reqPass->execute(array($mail));
+        $passExist = $reqPass->fetch();
+        return $passExist;
+    }
+
     public function verifPseudo($pseudo)
     {
         $db = $this->dbConnect();
@@ -22,11 +31,11 @@ class MemberManager extends Manager {
         return $pseudoExist;
     }
 
-    public function verifMember($pseudo, $password)
+    public function verifMember($mail, $password)
     {
         $db = $this->dbConnect();
-        $reqUser = $db->prepare('SELECT * FROM members WHERE pseudo = ? AND password = ?');
-        $reqUser->execute(array($pseudo, $password));
+        $reqUser = $db->prepare('SELECT * FROM members WHERE mail = ? AND password = ?');
+        $reqUser->execute(array($mail, $password));
         $userExist = $reqUser->rowCount();
         return $userExist;
     }
@@ -39,11 +48,11 @@ class MemberManager extends Manager {
         return $affectedLines;
     }
 
-    public function getUser($pseudo, $password)
+    public function getUser($mail)
     {
         $db = $this->dbConnect();
-        $reqUser = $db->prepare('SELECT * FROM members WHERE pseudo = ? AND password = ?');
-        $reqUser->execute(array($pseudo, $password));
+        $reqUser = $db->prepare('SELECT * FROM members WHERE mail = ?');
+        $reqUser->execute(array($mail));
         $user = $reqUser->fetch();
         return $user;
     }
@@ -74,6 +83,16 @@ class MemberManager extends Manager {
         $editMail->execute(array(
             'newMail' => $newMail,
             'id' => $id
+        ));
+    }
+
+    public function editPass($mail, $newPass)
+    {
+        $db = $this->dbConnect();
+        $editMail = $db->prepare('UPDATE members SET password = :newPass WHERE mail = :mail');
+        $editMail->execute(array(
+            'newPass' => $newPass,
+            'mail' => $mail
         ));
     }
     

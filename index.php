@@ -30,24 +30,17 @@ try {
                 $pseudo = htmlspecialchars($_POST['pseudo']);
                 $mail = htmlspecialchars($_POST['mail']);
                 $mail2 = htmlspecialchars($_POST['mail2']);
-                $password = sha1($_POST['password']);
-                $password2 = sha1($_POST['password2']);
-                //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                //$password2 = password_hash($_POST['password2'], PASSWORD_DEFAULT);
+                //$password = sha1($_POST['password']);
+                //$password2 = sha1($_POST['password2']);
+                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 if (!empty($_POST['pseudo']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
                     $pseudoLength = strlen($pseudo);
                     if ($pseudoLength <= 20) {
-                        $pseudoExist = pseudoExist($pseudo);
-                        if ($pseudoExist == 0) {
                             if ($mail == $mail2) {
                                 if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                                     $mailExist = mailExist($mail);
                                     if ($mailExist == 0) {
-                                        if ($password == $password2) {
                                             inscription($pseudo, $mail, $password);
-                                        } else {
-                                            throw new Exception('Les deux mots de passe ne correspondent pas.');
-                                        }
                                     } else {
                                         throw new Exception('Adresse mail déjà utilisée.');
                                     }
@@ -56,10 +49,7 @@ try {
                                 }
                             } else {
                                 throw new Exception('Les adresses mail ne correspondent pas.');
-                            }
-                        } else {
-                            throw new Exception('Ce pseudo est déjà utilisé.');
-                        }
+                            }                  
                     } else {
                         throw new Exception('Votre pseudo ne peut dépasser 20 caractères');
                     }
@@ -75,24 +65,43 @@ try {
         }
         elseif ($_GET['action'] == 'connexion') {
             if(isset($_POST['formConnexion'])) {
-                $pseudoCo = htmlspecialchars($_POST['pseudoCo']);
-                $passwordCo = sha1($_POST['passwordCo']);
-                //$passwordCo = password_verify($_POST['passwordCo'], $user['password']);
-                if(!empty($pseudoCo) AND !empty($passwordCo)) {
-                    $userExist = userExist($pseudoCo, $passwordCo);
-                    if($userExist == 1) {
-                        session_start();
-                        $userInfo = getUser($pseudoCo, $passwordCo);
-                        $_SESSION['id'] = $userInfo['id'];
-                        $_SESSION['pseudo'] = $userInfo['pseudo'];
-                        $_SESSION['mail'] = $userInfo['mail'];
-                        header('Location: index.php');            
+                if(!empty($_POST['mailCo']) AND !empty($_POST['passwordCo'])) {
+                    $mailCo = htmlspecialchars($_POST['mailCo']);
+                    if (mailExist($mailCo) == 1) {                       
+                        $passExist = passExist($mailCo);                        
+                        $passwordCo = password_verify($_POST['passwordCo'], $passExist['password']);
+                        if ($passwordCo == true) {
+                            session_start();
+                            $userInfo = getUser($mailCo);
+                            $_SESSION['id'] = $userInfo['id'];
+                            $_SESSION['pseudo'] = $userInfo['pseudo'];
+                            $_SESSION['mail'] = $userInfo['mail'];
+                            header('Location: index.php');
+                        } else {
+                            throw new Exception('Mot de passe incorrect');
+                        }
                     } else {
-                        throw new Exception('Verifiez les informations saisies.');
+                        throw new Exception('Adresse mail invalide.');
                     }
                 } else {
                     throw new Exception('Tous les champs doivent être complétés.');
                 }
+            }
+        }
+        elseif ($_GET['action'] == 'displayPass') {
+            require('view/frontend/editPassView.php');
+        }
+        elseif ($_GET['action'] == 'editPass') {
+            session_start();
+            $passExist = passExist($_SESSION['mail']);
+            $passwordCo = password_verify($_POST['oldPass'], $passExist['password']);
+            if ($passwordCo == true) {
+                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                editPass($_SESSION['mail'], $password);
+                header('location: index.php');
+            }
+            else {
+                throw new Exception('ERROR');
             }
         }
         // connexion end
@@ -115,7 +124,8 @@ try {
                 $id = $_GET['id'];
                 if (isset($_POST['newPseudo']) and !empty($_POST['newPseudo']) and pseudoExist($_POST['newPseudo']) == 0) {
                     editPseudo($id, $newPseudo);
-                    //header('Location : index.php'); pas prit en compte
+                    getProfil($id);
+                    echo('Votre pseudo a bien été modifié! Vos informations seront définitivement mises à jour lors de votre prochaine connexion.');
                 } else {
                     throw new Exception('Impossible de changer le pseudo.');
                 }
@@ -127,7 +137,8 @@ try {
                 $id = $_GET['id'];
                 if(isset($_POST['newMail']) and !empty($_POST['newMail']) and mailExist($_POST['newMail']) == 0) {
                     editMail($id, $newMail);
-                    //header('Location : index.php'); pas prit en compte
+                    getProfil($id);
+                    echo('Votre adresse mail a bien été modifiée!');
                 } else {
                     throw new Exception('Impossible de changer le mail.');
                 }

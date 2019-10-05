@@ -6,10 +6,10 @@
     <table>
         <tr>
             <td>
-                <label for="pseudo">Pseudo : </label>
+                <label for="pseudo">Mail : </label>
             </td>
             <td>
-                <input type="text" placeholder="Pseudo" id="pseudoCo" name="pseudoCo" required />
+                <input type="email" placeholder="Mail" id="mailCo" name="mailCo" required />
             </td>
         </tr>
         <tr>
@@ -30,6 +30,8 @@
         </tr>
     </table>
 </form>
+
+<a href="index.php?action=displayInscription">Pas encore inscrit? Par ici!</a>
 
 <?php $content = ob_get_clean(); ?>
 <?php require(__DIR__ .'/../template.php'); ?>

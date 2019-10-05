@@ -74,6 +74,13 @@ function mailExist($mail)
     return $mailExist;
 }
 
+function passExist($mail)
+{
+    $memberManager = new MemberManager();
+    $passExist = $memberManager->verifPassword($mail);
+    return $passExist;
+}
+
 function pseudoExist($pseudo)
 {
     $memberManager = new MemberManager();
@@ -81,17 +88,17 @@ function pseudoExist($pseudo)
     return $pseudoExist;
 }
 
-function userExist($pseudo, $password)
+function userExist($mail, $password)
 {
     $memberManager = new MemberManager();
-    $userExist = $memberManager->verifMember($pseudo, $password);
+    $userExist = $memberManager->verifMember($mail, $password);
     return $userExist;
 }
 
-function getUser($pseudo, $password)
+function getUser($mail)
 {
     $memberManager = new MemberManager();
-    $user = $memberManager->getUser($pseudo, $password);
+    $user = $memberManager->getUser($mail);
     return $user;
 }
 
@@ -112,5 +119,11 @@ function editMail($id, $newMail)
 {
     $memberManager = new MemberManager();
     $editMail = $memberManager->editMail($id, $newMail);
+}
+
+function editPass($mail, $newPass)
+{
+    $memberManager = new MemberManager();
+    $editPass = $memberManager->editPass($mail, $newPass);
 }
     

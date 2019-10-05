@@ -20,6 +20,12 @@ while ($part = $partData->fetch())
         Nombre de coeurs : <?= $part['corecount'] ?><br />
         <?= $part['coreclock'] ?> Mo <br />
         Prix : <?= $part['price'] ?> €</p>
+        <?php if (isset($_SESSION['pseudo'])): ?>
+        <a href="index.php?action=addConfig" class="btn btn-success">Ajouter au panier</a>
+        <?php endif; ?>
+        <?php if (!isset($_SESSION['pseudo'])): ?>
+        <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour ajouter des produits à votre pannier</a>
+        <?php endif; ?>
     </div>
     </div>
 <?php   

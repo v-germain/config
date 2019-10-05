@@ -8,7 +8,8 @@ class AdminManager extends Manager
     {
         $db = $this->dbConnect();
         $getUsers = $db->prepare('SELECT pseudo, mail FROM members');
-        return $getUsers;
+        $affectedLines = $getUsers->execute(array($pseudo, $mail));
+        return $affectedLines;
     }
 
 

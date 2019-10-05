@@ -19,6 +19,9 @@ while ($part = $partData->fetch())
         Chipset : <?= $part['chipset'] ?><br />
         Mémoire : <?= $part['memory'] ?> Go<br />
         Prix : <?= $part['price'] ?> €</p>
+        <?php if (isset($_SESSION['pseudo'])): ?>
+        <a href="action?index.php=addConfig" class="btn btn-success">Ajouter au panier</a>
+        <?php endif; ?>
     </div>
     </div>
 <?php   
