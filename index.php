@@ -15,6 +15,8 @@ try {
             listCase();
         } elseif ($_GET['action'] == 'carte graphique') {
             listGraph();
+        } elseif ($_GET['action'] == 'cartegraphiqueComment') {
+            viewGraph();
         } elseif ($_GET['action'] == 'carte mère') {
             listMB();
         } elseif ($_GET['action'] == 'disque dur') {
@@ -101,7 +103,7 @@ try {
                 header('location: index.php');
             }
             else {
-                throw new Exception('ERROR');
+                throw new Exception('Mauvais mot de passe');
             }
         }
         // connexion end
@@ -146,7 +148,10 @@ try {
         }
         // TO DO
         elseif ($_GET['action'] == 'admin') {
-            listUsers($pseudo, $mail);
+            listUsers();
+        }
+        elseif ($_GET['action'] == 'delUser') {
+            delUser($_GET["id"]);
         }
     } else {
         listConfig();

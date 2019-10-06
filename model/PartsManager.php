@@ -14,49 +14,98 @@ class PartsManager extends Manager
     public function loadCPU()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, brand, name, descr, corecount, coreclock, socket, price FROM processeur ORDER BY price DESC');
+        $req = $db->query('SELECT * FROM processeur ORDER BY price DESC');
         return $req;
     }
 
     public function loadPSU()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, brand, name, descr, wattage, modular, price FROM alimentation ORDER BY price DESC');
+        $req = $db->query('SELECT * FROM alimentation ORDER BY price DESC');
         return $req;
     }
 
     public function loadCase()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, brand, name, descr, size, price FROM boitier ORDER BY price DESC');
+        $req = $db->query('SELECT * FROM boitier ORDER BY price DESC');
         return $req;
     }
 
     public function loadGraph()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, brand, name, descr, chipset, memory, price FROM cartegraphique ORDER BY price DESC');
+        $req = $db->query('SELECT * FROM cartegraphique ORDER BY price DESC');
         return $req;
     }
 
     public function loadMB()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, brand, name, descr, format, socket, price FROM cartemere ORDER BY price DESC');
+        $req = $db->query('SELECT * FROM cartemere ORDER BY price DESC');
         return $req;
     }
 
     public function loadHD()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, brand, name, descr, cache, price FROM disquedur ORDER BY price DESC');
+        $req = $db->query('SELECT * FROM disquedur ORDER BY price DESC');
         return $req;
     }
 
-    public function loadMemory()
+    public function loadMemory($id)
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, brand, name, descr, speed, size, frequency, price FROM memoire ORDER BY price DESC');
+        $req = $db->query('SELECT * FROM memoire ORDER BY price DESC');
+        return $req;
+    }
+
+    public function viewMemory($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM memoire WHERE id = ?');
+        return $req;
+    }
+
+    public function viewHD($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM disquedur WHERE id = ?');
+        return $req;
+    }
+
+    public function viewMB($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM cartemere WHERE id = ?');
+        return $req;
+    }
+
+    public function viewGraph($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM cartegraphique WHERE id = ?');
+        return $req;
+    }
+
+    public function viewCase($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM boitier WHERE id = ?');
+        return $req;
+    }
+
+    public function viewPSU($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM alimentation WHERE id = ?');
+        return $req;
+    }
+
+    public function viewCPU($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM processeur WHERE id = ?');
         return $req;
     }
 }

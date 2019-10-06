@@ -1,9 +1,9 @@
-<?php $title = 'Carte mère' ?>
+<?php $title = 'Carte Graphique' ?>
 
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
-<h2>Carte mère</h2>
+<h2>Carte Graphique</h2>
 
 <div class="viewContainer">
 <?php
@@ -11,16 +11,16 @@ while ($part = $partData->fetch())
 {
 ?>
     <div class="card" style="width: 32rem;">
-    <img src="public/images/cartemere/<?= $part['id'] ?>.jpg" class="card-img-top" alt="...">
+    <img src="public/images/cartegraphique/<?= $part['id'] ?>.jpg" class="card-img-top" alt="...">
     <div class="card-body">
         <h4 class="card-title"><?= $part['name'] ?></h4>
         <p class="card-text"><?= $part['descr'] ?> <br /> 
         Marque : <?= $part['brand'] ?><br />
-        <?= $part['format'] ?><br />
-        Socket : <?= $part['socket'] ?><br />
+        Chipset : <?= $part['chipset'] ?><br />
+        Mémoire : <?= $part['memory'] ?> Go<br />
         Prix : <?= $part['price'] ?> €</p>
         <?php if (isset($_SESSION['pseudo'])): ?>
-        <a href="action?index.php=cartemereComment&amp;id=<?= $part['id'] ?>" class="btn btn-success">Laisser un avis</a>
+        <a href="action?index.php=commentView" class="btn btn-success">Laisser un avis</a>
         <?php endif; ?>
         <?php if (!isset($_SESSION['pseudo'])): ?>
         <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour laisser un avis!</a>

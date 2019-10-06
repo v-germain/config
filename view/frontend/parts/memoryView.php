@@ -21,10 +21,10 @@ while ($part = $partData->fetch())
         Fréquence : <?= $part['frequency'] ?> Mhz <br />
         Prix : <?= $part['price'] ?> €</p>
         <?php if (isset($_SESSION['pseudo'])): ?>
-        <a href="action?index.php=addConfig" class="btn btn-success">Ajouter au panier</a>
+        <a href="action?index.php=memoireComment&amp;id=<?= $part['id'] ?>" class="btn btn-success">Laisser un avis</a>
         <?php endif; ?>
         <?php if (!isset($_SESSION['pseudo'])): ?>
-        <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour ajouter des produits à votre pannier</a>
+        <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour laisser un avis!</a>
         <?php endif; ?>
     </div>
     </div>
