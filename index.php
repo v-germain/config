@@ -9,21 +9,67 @@ try {
             listConfig();
         } elseif ($_GET['action'] == 'processeur') {
             listCPU();
-        } elseif ($_GET['action'] == 'alimentation') {
+        }
+        elseif ($_GET['action'] == 'processeurView') {
+            viewCPU($_GET['id']);
+        }
+        elseif ($_GET['action'] == 'addCommentProcesseur') {
+            addCommentProcesseur($_POST['idPross'], $_POST['contentComment'], $_POST['idUser']);
+        }
+        elseif ($_GET['action'] == 'alimentation') {
             listPSU();
-        } elseif ($_GET['action'] == 'boitier') {
+        }
+        elseif ($_GET['action'] == 'alimentationView') {
+            viewPSU($_GET['id']);
+        }
+        elseif ($_GET['action'] == 'addCommentAlimentation') {
+            addCommentAlimentation($_POST['idPSU'], $_POST['contentComment'], $_POST['idUser']);
+        }  
+        elseif ($_GET['action'] == 'boitier') {
             listCase();
-        } elseif ($_GET['action'] == 'carte graphique') {
+        }
+        elseif ($_GET['action'] == 'boitierView') {
+            viewCase($_GET['id']);
+        }
+        elseif ($_GET['action'] == 'addCommentBoitier') {
+            addCommentBoitier($_POST['idCase'], $_POST['contentComment'], $_POST['idUser']);
+        } 
+        elseif ($_GET['action'] == 'carte graphique') {
             listGraph();
-        } elseif ($_GET['action'] == 'cartegraphiqueComment') {
-            viewGraph();
-        } elseif ($_GET['action'] == 'carte mère') {
+        }
+        elseif ($_GET['action'] == 'cartegraphiqueView') {
+            viewGraph($_GET['id']);
+        }
+        elseif ($_GET['action'] == 'addCommentCarteGraphique') {
+            addCommentCarteGraphique($_POST['idGraph'], $_POST['contentComment'], $_POST['idUser']);
+        }
+        elseif ($_GET['action'] == 'carte mere') {
             listMB();
-        } elseif ($_GET['action'] == 'disque dur') {
+        }
+        elseif ($_GET['action'] == 'cartemereView') {
+            viewMB($_GET['id']);
+        }
+        elseif ($_GET['action'] == 'addCommentCarteMere') {
+            addCommentCarteMere($_POST['idMB'], $_POST['contentComment'], $_POST['idUser']);
+        }
+        elseif ($_GET['action'] == 'disque dur') {
             listHD();
-        } elseif ($_GET['action'] == 'mémoire') {
+        }
+        elseif ($_GET['action'] == 'disquedurView') {
+            viewHD($_GET['id']);
+        } 
+        elseif ($_GET['action'] == 'addCommentDisqueDur') {
+            addCommentDisqueDur($_POST['idHD'], $_POST['contentComment'], $_POST['idUser']);
+        }
+        elseif ($_GET['action'] == 'memoire') {
             listMemory();
         }
+        elseif ($_GET['action'] == 'memoireView') {
+            viewMemory($_GET['id']);
+        }
+        elseif ($_GET['action'] == 'addCommentMemoire') {
+            addCommentMemoire($_POST['idRAM'], $_POST['contentComment'], $_POST['idUser']);
+        } 
         // inscription start
         elseif ($_GET['action'] == 'displayInscription') {
             require('view/frontend/inscriptionView.php');
@@ -32,8 +78,6 @@ try {
                 $pseudo = htmlspecialchars($_POST['pseudo']);
                 $mail = htmlspecialchars($_POST['mail']);
                 $mail2 = htmlspecialchars($_POST['mail2']);
-                //$password = sha1($_POST['password']);
-                //$password2 = sha1($_POST['password2']);
                 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 if (!empty($_POST['pseudo']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
                     $pseudoLength = strlen($pseudo);
@@ -146,7 +190,6 @@ try {
                 }
             }
         }
-        // TO DO
         elseif ($_GET['action'] == 'admin') {
             listUsers();
         }
@@ -159,33 +202,3 @@ try {
 } catch (Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
 }
-
-/*class Router {
-    
-    private $routes;
-
-    function add_route($route, callable $closure) {
-        $this->routes[$route] = $closure;
-    }
-
-    function execute() {
-        $path = $_SERVER['PATH_INFO'];
-        if(array_key_exists($path, $this->routes)) {
-            $this->routes[$path]();
-        } else {
-            $this->routes['/']();
-        }
-    }
-}
-
-$router = new Router();
-
-$router->add_route('/', function() {
-    listConfig();
-});
-
-$router->add_route('/processeur' , function() {
-    listCPU();
-});
-
-$router->execute();*/

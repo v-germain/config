@@ -1,37 +1,51 @@
-<?php $title = 'Mémoire' ?>
+<?php $title = $partData['name'] ?>
 
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
-<h2>Mémoire</h2>
+<h2><?= $partData['name'] ?></h2>
 
-<div class="viewContainer">
-<?php
-while ($part = $partData->fetch()) 
-{
-?>
+    <a href="index.php?action=memoire">Retour</a>
+
     <div class="card" style="width: 32rem;">
-    <img src="public/images/memoire/<?= $part['id'] ?>.jpg" class="card-img-top" alt="...">
+    <img src="public/images/memoire/<?= $partData['id'] ?>.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-        <h4 class="card-title"><?= $part['name'] ?></h4>
-        <p class="card-text"><?= $part['descr'] ?> <br /> 
-        Marque : <?= $part['brand'] ?><br />
-        DDR<?= $part['speed'] ?> <br />
-        Taille : <?= $part['size'] ?> Go<br />
-        Fréquence : <?= $part['frequency'] ?> Mhz <br />
-        Prix : <?= $part['price'] ?> €</p>
+        <h4 class="card-title"><?= $partData['name'] ?></h4>
+        <p class="card-text"><?= $partData['descr'] ?> <br /> 
+        Marque : <?= $partData['brand'] ?><br />
+        DDR<?= $partData['speed'] ?> <br />
+        Taille : <?= $partData['size'] ?> Go<br />
+        Fréquence : <?= $partData['frequency'] ?> Mhz <br />
+        Prix : <?= $partData['price'] ?> €</p>
         <?php if (isset($_SESSION['pseudo'])): ?>
         <a href="action?index.php=commentView" class="btn btn-success">Laisser un avis</a>
         <?php endif; ?>
-        <?php if (!isset($_SESSION['pseudo'])): ?>
-        <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour laisser un avis!</a>
-        <?php endif; ?>
+
     </div>
     </div>
-<?php   
-}
-?>
-</div>
+
+    <form method="POST" action="index.php?action=addCommentMemoire">
+        <input type="text-area" id="contentComment" name="contentComment">
+        <input type="hidden" value="<?= $_SESSION['id'] ?>" id="idUser" name="idUser">
+        <input type="hidden" value="<?= $partData['id'] ?>" id="idRAM" name="idRAM">
+        <input type="submit" value="Envoyer">
+    </form>
+
+    <?php
+    $comments = getComments($partData['id'], 7);
+    while ($comment =$comments -> fetch()) {
+        ?>
+        <div>
+            <p>De <?= $comment['pseudo'] ?></p>
+            <p><?= $comment['content'] ?></p>
+            <?php if (isset($_SESSION['pseudo']) AND ($_SESSION['pseudo']) == 'admin'): ?>
+                <a href="action?index.php=deleteComment" class="btn btn-danger">Supprimer</a>
+            <?php endif; ?>
+        </div>
+    <?php
+    
+    } 
+    ?>
 
 
 <?php $content = ob_get_clean(); ?>

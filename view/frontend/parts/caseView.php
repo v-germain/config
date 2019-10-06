@@ -19,7 +19,7 @@ while ($part = $partData->fetch())
         Taille : <?= $part['size'] ?><br />
         Prix : <?= $part['price'] ?> €<br />
         <?php if (isset($_SESSION['pseudo'])): ?>
-        <a href="action?index.php=boitierComment&amp;id=<?= $part['id'] ?>" class="btn btn-success">Laisser un avis</a>
+        <a href="index.php?action=boitierView&amp;id=<?= $part['id'] ?>" class="btn btn-success">Laisser un avis</a>
         <?php endif; ?>
         <?php if (!isset($_SESSION['pseudo'])): ?>
         <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour laisser un avis!</a>

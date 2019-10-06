@@ -21,7 +21,7 @@ while ($part = $partData->fetch())
         <?= $part['coreclock'] ?> Mo <br />
         Prix : <?= $part['price'] ?> €</p>
         <?php if (isset($_SESSION['pseudo'])): ?>
-        <a href="action?index.php=processeurComment&amp;id=<?= $part['id'] ?>" class="btn btn-success">Laisser un avis</a>
+        <a href="index.php?action=processeurView&amp;id=<?= $part['id'] ?>" class="btn btn-success">Laisser un avis</a>
         <?php endif; ?>
         <?php if (!isset($_SESSION['pseudo'])): ?>
         <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour laisser un avis!</a>

@@ -1,37 +1,45 @@
-<?php $title = 'Disque dur' ?>
+<?php $title = $partData['name'] ?>
 
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
-<h2>Disque dur</h2>
+<h2><?= $partData['name'] ?></h2>
 
-<div class="viewContainer">
+    <a href="index.php?action=disque dur">Retour</a>
 
-<?php
-while ($part = $partData->fetch()) 
-{
-?>
     <div class="card" style="width: 32rem;">
-    <img src="public/images/disquedur/<?= $part['id'] ?>.jpg" class="card-img-top" alt="...">
+    <img src="public/images/disquedur/<?= $partData['id'] ?>.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-        <h4 class="card-title"><?= $part['name'] ?></h4>
-        <p class="card-text"><?= $part['descr'] ?> <br /> 
-        Marque : <?= $part['brand'] ?><br />
-        Taille : <?= $part['cache'] ?> Go<br />
-        Prix : <?= $part['price'] ?> €</p>
-        <?php if (isset($_SESSION['pseudo'])): ?>
-        <a href="action?index.php=commentView" class="btn btn-success">Laisser un avis</a>
-        <?php endif; ?>
-        <?php if (!isset($_SESSION['pseudo'])): ?>
-        <a href="index.php?action=displayConnexion" class="btn btn-outline-info">Connectez-vous pour laisser un avis!</a>
-        <?php endif; ?>
+        <h4 class="card-title"><?= $partData['name'] ?></h4>
+        <p class="card-text"><?= $partData['descr'] ?> <br /> 
+        Marque : <?= $partData['brand'] ?><br />
+        Taille : <?= $partData['cache'] ?> Go<br />
+        Prix : <?= $partData['price'] ?> €</p>
     </div>
     </div>
-<?php   
-}
-?>
-</div>
 
+    <form method="POST" action="index.php?action=addCommentDisqueDur">
+        <input type="text-area" id="contentComment" name="contentComment">
+        <input type="hidden" value="<?= $_SESSION['id'] ?>" id="idUser" name="idUser">
+        <input type="hidden" value="<?= $partData['id'] ?>" id="idHD" name="idHD">
+        <input type="submit" value="Envoyer">
+    </form>
+
+    <?php
+    $comments = getComments($partData['id'], 6);
+    while ($comment =$comments -> fetch()) {
+        ?>
+        <div>
+            <p>De <?= $comment['pseudo'] ?></p>
+            <p><?= $comment['content'] ?></p>
+            <?php if (isset($_SESSION['pseudo']) AND ($_SESSION['pseudo']) == 'admin'): ?>
+                <a href="action?index.php=deleteComment" class="btn btn-danger">Supprimer</a>
+            <?php endif; ?>
+        </div>
+    <?php
+    
+    } 
+    ?>
 
 <?php $content = ob_get_clean(); ?>
 <?php require(__DIR__ . '/../../template.php'); ?>

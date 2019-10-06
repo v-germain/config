@@ -31,9 +31,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=processeur">Processeur</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="index.php?action=carte mère">Carte mère</a>
+          <a class="dropdown-item" href="index.php?action=carte mere">Carte mère</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="index.php?action=mémoire">Mémoire</a>
+          <a class="dropdown-item" href="index.php?action=memoire">Mémoire</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="index.php?action=disque dur">Disque dur</a>
           <div class="dropdown-divider"></div>
