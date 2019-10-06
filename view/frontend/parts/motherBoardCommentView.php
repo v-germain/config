@@ -16,9 +16,6 @@
         <?= $partData['format'] ?><br />
         Socket : <?= $partData['socket'] ?><br />
         Prix : <?= $partData['price'] ?> €</p>
-        <?php if (isset($_SESSION['pseudo'])): ?>
-        <a href="action?index.php=cartemereView" class="btn btn-success">Laisser un avis</a>
-        <?php endif; ?>
     </div>
     </div>
 
@@ -26,7 +23,7 @@
         <input type="text-area" id="contentComment" name="contentComment">
         <input type="hidden" value="<?= $_SESSION['id'] ?>" id="idUser" name="idUser">
         <input type="hidden" value="<?= $partData['id'] ?>" id="idMB" name="idMB">
-        <input type="submit" value="Envoyer">
+        <input type="submit" value="Envoyer" class="btn btn-outline-info">
     </form>
 
     <?php

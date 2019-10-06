@@ -22,7 +22,7 @@
         <input type="text-area" id="contentComment" name="contentComment">
         <input type="hidden" value="<?= $_SESSION['id'] ?>" id="idUser" name="idUser">
         <input type="hidden" value="<?= $partData['id'] ?>" id="idHD" name="idHD">
-        <input type="submit" value="Envoyer">
+        <input type="submit" value="Envoyer" class="btn btn-outline-info">
     </form>
 
     <?php
