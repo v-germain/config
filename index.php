@@ -196,6 +196,9 @@ try {
         elseif ($_GET['action'] == 'delUser') {
             delUser($_GET["id"]);
         }
+        elseif ($_GET['action'] == 'delComment') {
+            delComment($_GET["id"]);
+        }
     } else {
         listConfig();
     }

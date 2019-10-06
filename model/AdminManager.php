@@ -18,4 +18,12 @@ class AdminManager extends Manager
         $delUser = $db->prepare('DELETE FROM members WHERE id = ?');
         $delUser->execute(array($id));
     }
+
+    public function deleteComment($idComment)
+    {
+        $db = $this->dbConnect();
+        $delComment = $db->prepare('DELETE FROM comments WHERE idComment = ?');
+        $delComment->execute(array($idComment));
+    }
+
 }

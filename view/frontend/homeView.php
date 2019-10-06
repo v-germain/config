@@ -37,6 +37,30 @@
     ?>
 </div>
 
+<div id="review">
+    <div class="reviews">
+        <p id="userName1"></p>
+        <p id="name1"></p>
+        <p id="catch1"></p>
+    </div>
+
+    <div class="reviews">
+        <p id="userName2"></p>
+        <p id="name2"></p>
+        <p id="catch2"></p>
+    </div>
+
+    <div class="reviews">
+        <p id="userName3"></p>
+        <p id="name3"></p>
+        <p id="catch3"></p>
+    </div>
+</div>
+    
+
+<script src="/pro5/public/js/ajax.js"></script>
+<script src="/pro5/public/js/score.js"></script>
+<script src="/pro5/public/js/map.js"></script>
 <script src="/pro5/public/js/slider.js"></script>
 <script src="/pro5/public/js/init.js"></script>
 
