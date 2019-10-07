@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <form method="POST" action="index.php?action=addCommentBoitier">
+    <form method="POST" action="index.php?action=addCommentBoitier" class="form">
         <input type="text-area" id="contentComment" name="contentComment">
         <input type="hidden" value="<?= $_SESSION['id'] ?>" id="idUser" name="idUser">
         <input type="hidden" value="<?= $partData['id'] ?>" id="idCase" name="idCase">
@@ -32,7 +32,7 @@
     $comments = getComments($partData['id'], 4);
     while ($comment = $comments->fetch()) {
         ?>
-        <div>
+        <div class="comments">
             <p>De <?= $comment['pseudo'] ?></p>
             <p><?= $comment['content'] ?></p>
             <?php if (isset($_SESSION['pseudo']) and ($_SESSION['pseudo']) == 'admin') : ?>

@@ -4,9 +4,110 @@
     justify-content: center;
 }
 
+ul.navbar-nav.mr-auto {
+  display: flex;
+  align-items: center;
+}
+
+ul.navbar-nav.mr-auto a:hover {
+  color: #007bff;
+}
+
+ul.navbar-nav.mr-auto a.nav-link:hover {
+  color: #007bff;
+}
+
+li.nav-item#pseudoDisplay {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: larger;
+}
+
 div.card {
     margin: 20px;
     padding: 5px;
+}
+
+div.viewPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+div.comments {
+  width: 40rem;
+  text-align: center;
+  margin: 10px;
+  border: 1px solid #17a2b8;
+  border-radius: 10px;
+}
+
+form.form {
+
+  width: 60%;
+  margin: auto;
+  border: 1px solid #dadfe3;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+
+div#userInfo {
+  width: 60%;
+  margin: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  text-align: center;
+}
+
+a#passModify.btn.btn-primary {
+  float: right;
+}
+
+input#inscription.btn.btn-primary {
+  float: right;
+}
+
+div.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+a.navbar-brand img {
+  border: 2px solid #007bff;
+}
+
+div#review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+div#reviewContainer {
+  margin-top: 50px;
+  text-align: center;
+  border-top: 2px solid #17a2b8;
+}
+
+div.reviews {
+  border: 1px white solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #17a2b8;
+  color: white;
+  text-shadow: 0 0 1px black;
 }
 
 /*--slider---------------------*/
@@ -21,6 +122,11 @@ figure#diaporama {
     max-width: 900px;
     position: relative;
     margin: auto;
+    margin-bottom: 50px;
+}
+
+#slider_container img {
+  border: 10px solid #007bff;
 }
 
 .slides {
@@ -88,10 +194,41 @@ figure#diaporama {
 
 /*--slider---------------------*/
 
+h2 {
+  text-align: center;
+}
+
+footer {
+  height: 100px;
+  background-color: white;
+  border-top: 2px solid #17a2b8;
+}
+
 .display {
     display: block;
 }
 
 .none {
     display: none;
+}
+
+@media screen and (max-device-width: 900px) 
+{
+  div.card {
+    width: 90%!important;
+  }
+
+  div.comments {
+    width: 70%;
+  }
+
+  #slider_container {
+    display: none;
+  }
+
+  img.card-img-top {
+    width: 50%;
+    margin: auto;
+  }
+
 }

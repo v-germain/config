@@ -32,7 +32,7 @@
     $comments = getComments($partData['id'], 5);
     while ($comment = $comments->fetch()) {
         ?>
-        <div>
+        <div class="comments">
             <p>De <?= $comment['pseudo'] ?></p>
             <p><?= $comment['content'] ?></p>
             <?php if (isset($_SESSION['pseudo']) and ($_SESSION['pseudo']) == 'admin') : ?>

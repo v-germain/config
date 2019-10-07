@@ -3,9 +3,9 @@
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
-<div class="viewContainer">
+<h2>Carte mère</h2>
 
-    <h2>Carte mère</h2>
+<div class="viewContainer">
 
     <?php
     while ($part = $partData->fetch()) {

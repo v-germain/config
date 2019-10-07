@@ -1,7 +1,7 @@
 class Score {
     constructor() {
-        this.div=document.getElementById("displayStaff");
-        this.tab = ["super site!", "ce site est vraiment top!!!", "Quel design osé!"];
+        this.tab = ["Super site pour fan de config!", "Ce site est vraiment top!!!", "Toujours à la pointe du hardware!"];
+        this.imgTab = [""]
     }
 
     review() {
@@ -10,12 +10,12 @@ class Score {
             const users = JSON.parse(reponse);
             console.log(users);
             for(let i = 0; i < 3; i++) { 
-                        const userName = document.getElementById("userName"+(i+1));
                         const name = document.getElementById("name"+(i+1));
                         const phrase = document.getElementById("catch"+(i+1));
-                        userName.textContent=users[i].name;
+                        const web = document.getElementById("web"+(i+1));
                         name.textContent=users[i].username;
                         phrase.textContent=this.tab[i];
+                        web.textContent=users[i].website;
             };
         });       
     }

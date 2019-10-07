@@ -32,31 +32,33 @@
                 <a href="index.php?action=<?= $parts['name'] ?>" class="btn btn-primary">Voir</a>
             </div>
         </div>
-        <?php
+    <?php
     }
     ?>
 </div>
 
-<div id="review">
-    <div class="reviews">
-        <p id="userName1"></p>
-        <p id="name1"></p>
-        <p id="catch1"></p>
-    </div>
+<div id="reviewContainer">
+    <h4>Notre site, c'est vous qui en parlez le mieux!</h4>
+            <div id="review">
+                <div class="reviews">
+                    <p id="name1"></p>
+                    <p id="web1"></p>
+                    <p id="catch1"></p>
+                </div>
 
-    <div class="reviews">
-        <p id="userName2"></p>
-        <p id="name2"></p>
-        <p id="catch2"></p>
-    </div>
+                <div class="reviews">
+                    <p id="name2"></p>
+                    <p id="web2"></p>
+                    <p id="catch2"></p>
+                </div>
 
-    <div class="reviews">
-        <p id="userName3"></p>
-        <p id="name3"></p>
-        <p id="catch3"></p>
-    </div>
+                <div class="reviews">
+                    <p id="name3"></p>
+                    <p id="web3"></p>
+                    <p id="catch3"></p>
+                </div>
+            </div>
 </div>
-    
 
 <script src="/pro5/public/js/ajax.js"></script>
 <script src="/pro5/public/js/score.js"></script>
@@ -65,4 +67,4 @@
 <script src="/pro5/public/js/init.js"></script>
 
 <?php $content = ob_get_clean(); ?>
-<?php require(__DIR__ .'/../template.php'); ?>
+<?php require(__DIR__ . '/../template.php'); ?>
