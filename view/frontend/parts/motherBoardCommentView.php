@@ -21,11 +21,11 @@
         </div>
     </div>
 
-    <form method="POST" action="index.php?action=addCommentCarteMere">
+    <form method="POST" class="form comment" action="index.php?action=addCommentCarteMere">
         <input type="text-area" id="contentComment" name="contentComment">
         <input type="hidden" value="<?= $_SESSION['id'] ?>" id="idUser" name="idUser">
         <input type="hidden" value="<?= $partData['id'] ?>" id="idMB" name="idMB">
-        <input type="submit" value="Envoyer" class="btn btn-outline-info">
+        <input type="submit" value="Envoyer" class="btn btn-outline-info sendComment">
     </form>
 
     <?php

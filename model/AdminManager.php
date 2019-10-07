@@ -25,5 +25,4 @@ class AdminManager extends Manager
         $delComment = $db->prepare('DELETE FROM comments WHERE idComment = ?');
         $delComment->execute(array($idComment));
     }
-
 }

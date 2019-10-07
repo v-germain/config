@@ -22,11 +22,11 @@
         </div>
     </div>
 
-    <form method="POST" action="index.php?action=addCommentProcesseur">
+    <form method="POST" class="form comment" action="index.php?action=addCommentProcesseur">
         <input type="text-area" id="contentComment" name="contentComment">
         <input type="hidden" value="<?= $_SESSION['id'] ?>" id="idUser" name="idUser">
         <input type="hidden" value="<?= $partData['id'] ?>" id="idPross" name="idPross">
-        <input type="submit" value="Envoyer" class="btn btn-outline-info">
+        <input type="submit" value="Envoyer" class="btn btn-outline-info sendComment">
     </form>
 
     <?php

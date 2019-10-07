@@ -40,6 +40,7 @@ div.comments {
   margin: 10px;
   border: 1px solid #17a2b8;
   border-radius: 10px;
+  padding: 5px;
 }
 
 form.form {
@@ -51,6 +52,18 @@ form.form {
   margin-top: 50px;
   margin-bottom: 50px;
   padding: 10px;
+}
+
+input#contentComment {
+  width: 25rem;
+}
+
+form.form.comment{
+  width: 40rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+
 }
 
 div#userInfo {
@@ -108,6 +121,25 @@ div.reviews {
   background-color: #17a2b8;
   color: white;
   text-shadow: 0 0 1px black;
+}
+
+div.memberContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.memberView {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  border: 1px solid #17a2b8;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px;
 }
 
 /*--slider---------------------*/
@@ -202,6 +234,13 @@ footer {
   height: 100px;
   background-color: white;
   border-top: 2px solid #17a2b8;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+footer a {
+  margin: 10px;
 }
 
 .display {
