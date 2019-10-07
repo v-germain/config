@@ -1,5 +1,11 @@
 <?php $title = "Modifier mot de passe"; ?>
 
+<?php
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php ob_start(); ?>
 
 <script type="text/javascript">

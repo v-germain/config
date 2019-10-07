@@ -1,5 +1,11 @@
 <?php $title = "Profil"; ?>
 
+<?php
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php ob_start(); ?>
 
 <div id="userInfo">
