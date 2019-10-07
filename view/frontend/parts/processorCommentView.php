@@ -37,7 +37,7 @@
             <p>De <?= $comment['pseudo'] ?></p>
             <p><?= htmlspecialchars($comment['content']) ?></p>
             <?php if (isset($_SESSION['pseudo']) and ($_SESSION['pseudo']) == 'admin') : ?>
-                <a href="index.php?action=delComment&amp;id=<?= $comment['idComment'] ?>" class="btn btn-danger">Supprimer</a>
+                <a href="index.php?action=delComment&amp;id=<?= $comment['idComment'] ?>&amp;idPart=<?= $partData['id'] ?>&amp;type=1" class="btn btn-danger">Supprimer</a>
             <?php endif; ?>
         </div>
     <?php

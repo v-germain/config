@@ -14,12 +14,10 @@ function delUser($id)
 {
     $adminManager = new AdminManager;
     $delUser = $adminManager->deleteUsers($id);
-    echo utf8_decode('Membre supprimé! <a href="index.php?action=admin">Retour</a>');
 }
 
 function delComment($idComment)
 {
     $adminManager = new AdminManager;
     $delComment = $adminManager->deleteComment($idComment);
-    echo utf8_decode('Commentaire supprimé! <a href="index.php?action=listConfig">Retour</a>');
 }

@@ -76,16 +76,6 @@ class MemberManager extends Manager {
         ));
     }
 
-    public function editMail($id, $newMail)
-    {
-        $db = $this->dbConnect();
-        $editMail = $db->prepare('UPDATE members SET mail = :newMail WHERE id = :id');
-        $editMail->execute(array(
-            'newMail' => $newMail,
-            'id' => $id
-        ));
-    }
-
     public function editPass($mail, $newPass)
     {
         $db = $this->dbConnect();
@@ -96,5 +86,4 @@ class MemberManager extends Manager {
         ));
     }
     
-
 }

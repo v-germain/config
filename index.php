@@ -7,6 +7,7 @@ try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listConfig') {
             listConfig();
+        // parts start
         } elseif ($_GET['action'] == 'processeur') {
             listCPU();
         }
@@ -15,6 +16,7 @@ try {
         }
         elseif ($_GET['action'] == 'addCommentProcesseur') {
             addCommentProcesseur($_POST['idPross'], $_POST['contentComment'], $_POST['idUser']);
+            viewCPU($_POST['idPross']);
         }
         elseif ($_GET['action'] == 'alimentation') {
             listPSU();
@@ -24,6 +26,7 @@ try {
         }
         elseif ($_GET['action'] == 'addCommentAlimentation') {
             addCommentAlimentation($_POST['idPSU'], $_POST['contentComment'], $_POST['idUser']);
+            viewPSU($_POST['idPSU']);
         }  
         elseif ($_GET['action'] == 'boitier') {
             listCase();
@@ -33,6 +36,7 @@ try {
         }
         elseif ($_GET['action'] == 'addCommentBoitier') {
             addCommentBoitier($_POST['idCase'], $_POST['contentComment'], $_POST['idUser']);
+            viewCase($_POST['idCase']);
         } 
         elseif ($_GET['action'] == 'carte graphique') {
             listGraph();
@@ -42,6 +46,7 @@ try {
         }
         elseif ($_GET['action'] == 'addCommentCarteGraphique') {
             addCommentCarteGraphique($_POST['idGraph'], $_POST['contentComment'], $_POST['idUser']);
+            viewGraph($_POST['idGraph']);
         }
         elseif ($_GET['action'] == 'carte mere') {
             listMB();
@@ -51,6 +56,7 @@ try {
         }
         elseif ($_GET['action'] == 'addCommentCarteMere') {
             addCommentCarteMere($_POST['idMB'], $_POST['contentComment'], $_POST['idUser']);
+            viewMB($_POST['idMB']);
         }
         elseif ($_GET['action'] == 'disque dur') {
             listHD();
@@ -60,6 +66,7 @@ try {
         } 
         elseif ($_GET['action'] == 'addCommentDisqueDur') {
             addCommentDisqueDur($_POST['idHD'], $_POST['contentComment'], $_POST['idUser']);
+            viewHD($_POST['idHD']);
         }
         elseif ($_GET['action'] == 'memoire') {
             listMemory();
@@ -69,7 +76,9 @@ try {
         }
         elseif ($_GET['action'] == 'addCommentMemoire') {
             addCommentMemoire($_POST['idRAM'], $_POST['contentComment'], $_POST['idUser']);
-        } 
+            viewMemory($_POST['idRAM']);
+        }
+        //parts end 
         // inscription start
         elseif ($_GET['action'] == 'displayInscription') {
             require('view/frontend/inscriptionView.php');
@@ -134,30 +143,16 @@ try {
                 }
             }
         }
-        elseif ($_GET['action'] == 'displayPass') {
-            require('view/frontend/editPassView.php');
-        }
-        elseif ($_GET['action'] == 'editPass') {
-            session_start();
-            $passExist = passExist($_SESSION['mail']);
-            $passwordCo = password_verify($_POST['oldPass'], $passExist['password']);
-            if ($passwordCo == true) {
-                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                editPass($_SESSION['mail'], $password);
-                header('location: index.php');
-            }
-            else {
-                throw new Exception('Mauvais mot de passe');
-            }
-        }
         // connexion end
+        // profil start
         elseif ($_GET['action'] == 'profil') { 
             if(isset($_GET['id']) && $_GET['id'] > 0) { 
+                session_start();
                 $id = $_GET['id'];                       
                 getProfil($id);
             } else {
                 throw new Exception('La page que vous avez sélectionné n\'existe pas');
-                } 
+            } 
         }
         elseif ($_GET['action'] == 'deconnexion') {
             session_start();
@@ -177,28 +172,62 @@ try {
                 }
             }
         }
-        elseif ($_GET['action'] == 'editMail') {
-            if(isset($_POST['formEditMail'])) {
-                $newMail = htmlspecialchars($_POST['newMail']);
-                $id = $_GET['id'];
-                if(isset($_POST['newMail']) and !empty($_POST['newMail']) and mailExist($_POST['newMail']) == 0) {
-                    editMail($id, $newMail);
-                    getProfil($id);
-                    echo('Votre adresse mail a bien été modifiée!');
-                } else {
-                    throw new Exception('Impossible de changer le mail.');
-                }
+        elseif ($_GET['action'] == 'displayPass') {
+            require('view/frontend/editPassView.php');
+        }
+        elseif ($_GET['action'] == 'editPass') {
+            session_start();
+            $passExist = passExist($_SESSION['mail']);
+            $passwordCo = password_verify($_POST['oldPass'], $passExist['password']);
+            if ($passwordCo == true) {
+                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                editPass($_SESSION['mail'], $password);
+                getProfil($_SESSION['id']);
+            }
+            else {
+                throw new Exception('Mauvais mot de passe');
             }
         }
+        //profil end
+        // admin start
         elseif ($_GET['action'] == 'admin') {
             listUsers();
         }
         elseif ($_GET['action'] == 'delUser') {
             delUser($_GET["id"]);
+            listUsers();
         }
         elseif ($_GET['action'] == 'delComment') {
             delComment($_GET["id"]);
+            $idPart = $_GET['idPart'] ;
+            switch ($_GET['type']) {
+                case 1:
+                    viewCPU($idPart);
+                    break;
+                case 2:
+                    viewGraph($idPart);
+                    break;
+                case 3:
+                    viewPSU($idPart);
+                    break;
+                case 4:
+                    viewCase($idPart);
+                    break;
+                case 5:
+                    viewMB($idPart);
+                    break;
+                case 6:
+                    viewHD($idPart);
+                    break;
+                case 7:
+                    viewMemory($idPart);
+                    break;
+                default:
+                    listConfig();
+                    break;
+            }
         }
+        // admin end
     } else {
         listConfig();
     }

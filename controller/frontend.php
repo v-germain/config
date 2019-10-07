@@ -112,7 +112,6 @@ function viewCPU($id)
     {
         $partsManager = new PartsManager();
         $partData = $partsManager->viewCPU($id);
-        //$comments = $partsManager->getComments($idPart, $idTable);
         require(__DIR__ . '/../view/frontend/parts/processorCommentView.php');
         return $partData;
     }
@@ -121,49 +120,42 @@ function addCommentProcesseur($idPross, $idContent, $idUser)
 {
     $partsManager = new PartsManager();
     $affectedLines = $partsManager->addCommentProcesseur($idPross, $idContent, $idUser);
-    echo utf8_decode('Message posté! <a href="index.php?action=processeur">Retour</a>');
 }
 
 function addCommentCarteGraphique($idGraph, $idContent, $idUser)
 {
     $partsManager = new PartsManager();
     $affectedLines = $partsManager->addCommentCarteGraphique($idGraph, $idContent, $idUser);
-    echo utf8_decode('Message posté! <a href="index.php?action=carte graphique">Retour</a>');
 }
 
 function addCommentAlimentation($idPSU, $idContent, $idUser)
 {
     $partsManager = new PartsManager();
     $affectedLines = $partsManager->addCommentAlimentation($idPSU, $idContent, $idUser);
-    echo utf8_decode('Message posté! <a href="index.php?action=alimentation">Retour</a>');
 }
 
 function addCommentBoitier($idCase, $idContent, $idUser)
 {
     $partsManager = new PartsManager();
     $affectedLines = $partsManager->addCommentBoitier($idCase, $idContent, $idUser);
-    echo utf8_decode('Message posté! <a href="index.php?action=boitier">Retour</a>');
 }
 
 function addCommentCarteMere($idMB, $idContent, $idUser)
 {
     $partsManager = new PartsManager();
     $affectedLines = $partsManager->addCommentCarteMere($idMB, $idContent, $idUser);
-    echo utf8_decode('Message posté! <a href="index.php?action=carte mere">Retour</a>');
 }
 
 function addCommentDisqueDur($idHD, $idContent, $idUser)
 {
     $partsManager = new PartsManager();
     $affectedLines = $partsManager->addCommentDisqueDur($idHD, $idContent, $idUser);
-    echo utf8_decode('Message posté! <a href="index.php?action=disque dur">Retour</a>');
 }
 
 function addCommentMemoire($idRAM, $idContent, $idUser)
 {
     $partsManager = new PartsManager();
     $affectedLines = $partsManager->addCommentMemoire($idRAM, $idContent, $idUser);
-    echo utf8_decode('Message posté! <a href="index.php?action=memoire">Retour</a>');
 }
 
 

@@ -1,6 +1,5 @@
-<?php $title = "Profil"; ?>
+<?php $title = "Modifier mot de passe"; ?>
 
-<?php session_start(); ?>
 <?php ob_start(); ?>
 
 <script type="text/javascript">

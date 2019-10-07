@@ -1,7 +1,6 @@
 class Score {
     constructor() {
         this.tab = ["Super site pour fan de config!", "Ce site est vraiment top!!!", "Toujours à la pointe du hardware!"];
-        this.imgTab = [""]
     }
 
     review() {
