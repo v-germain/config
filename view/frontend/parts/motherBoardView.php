@@ -11,7 +11,7 @@
     while ($part = $partData->fetch()) {
         ?>
         <div class="card" style="width: 32rem;">
-            <img src="public/images/cartemere/<?= $part['id'] ?>.jpg" class="card-img-top" alt="...">
+            <img src="public/images/cartemere/<?= $part['id'] ?>.jpg" class="card-img-top" alt="Carte mère <?= $part['name'] ?>">
             <div class="card-body">
                 <h4 class="card-title"><?= $part['name'] ?></h4>
                 <p class="card-text"><?= substr($part['descr'], 0, 500) ?>[...] <br />

@@ -10,7 +10,7 @@
     <a href="index.php?action=processeur">Retour</a>
 
     <div class="card" style="width: 40rem;">
-        <img src="public/images/processeur/<?= $partData['id'] ?>.jpg" class="card-img-top" alt="...">
+        <img src="public/images/processeur/<?= $partData['id'] ?>.jpg" class="card-img-top" alt="Processeur <?= $partData['name'] ?>">
         <div class="card-body">
             <h4 class="card-title"><?= $partData['name'] ?></h4>
             <p class="card-text"><?= $partData['descr'] ?> <br />

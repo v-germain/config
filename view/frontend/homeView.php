@@ -25,7 +25,7 @@
     while ($parts = $partsData->fetch()) {
         ?>
         <div class="card" style="width: 20rem;">
-            <img src="/pro5/public/images/front<?= $parts['name'] ?>.jpg" class="card-img-top" alt="...">
+            <img src="/pro5/public/images/front<?= $parts['name'] ?>.jpg" class="card-img-top" alt="<?= $parts['name'] ?>">
             <div class="card-body">
                 <h4 class="card-title"><?= $parts['name'] ?></h4>
                 <p class="card-text"></p>

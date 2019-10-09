@@ -10,7 +10,7 @@
     <a href="index.php?action=alimentation">Retour</a>
 
     <div class="card" style="width: 40rem;">
-        <img src="public/images/alimentation/<?= $partData['id'] ?>.jpg" class="card-img-top" alt="...">
+        <img src="public/images/alimentation/<?= $partData['id'] ?>.jpg" class="card-img-top" alt="Alimentation <?= $partData['name'] ?>">
         <div class="card-body">
             <h4 class="card-title"><?= $partData['name'] ?></h4>
             <p class="card-text"><?= $partData['descr'] ?> <br />
